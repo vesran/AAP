@@ -1,0 +1,44 @@
+\documentclass {article}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amsfonts,amssymb}
+\usepackage{tikz}
+\begin{document}
+\begin{center}
+\begin{tikzpicture}
+\tikzset{vertex/.style={draw,circle,minimum width=1.6 em,inner sep =0 pt}}
+\tikzset{edge/.style={color=black}}
+\tikzset{Hedge/.style={line width=2pt,color=red}}\node[ vertex ] (0) at (5.0 ,4.5) {}; \draw(0) node {$u$ };
+\node[ vertex ] (1) at (1.5 ,3.0) {}; \draw(1) node {$s_1$ };
+\node[ vertex ] (2) at (3.0 ,3.0) {}; \draw(2) node {$s_2$ };
+\node[ vertex ] (3) at (4.2 ,3.0) {}; \draw(3) node {$s_3$ };
+\node[ vertex ] (4) at (5.6 ,3.0) {}; \draw(4) node {$s_4$ };
+\node[ vertex ] (5) at (7.0 ,3.0) {}; \draw(5) node {$s_5$ };
+\node[ vertex ] (6) at (8.2 ,3.0) {}; \draw(6) node {$s_6$ };
+\node[ vertex ] (7) at (1.0 ,1.0) {}; \draw(7) node {$t_1$ };
+\node[ vertex ] (8) at (2.0 ,1.0) {}; \draw(8) node {$t_2$ };
+\node[ vertex ] (9) at (3.0 ,1.0) {}; \draw(9) node {$t_3$ };
+\node[ vertex ] (10) at (4.0 ,1.0) {}; \draw(10) node {$t_{4}$ };
+\node[ vertex ] (11) at (5.0 ,1.0) {}; \draw(11) node {$t_{5}$ };
+\node[ vertex ] (12) at (6.0 ,1.0) {}; \draw(12) node {$t_{6}$ };
+\node[ vertex ] (13) at (7.0 ,1.0) {}; \draw(13) node {$t_{7}$ };
+\node[ vertex ] (14) at (8.2 ,1.0) {}; \draw(14) node {$t_{8}$ };
+\draw[ edge ] (0) -- (1);
+\draw[ edge ] (0) -- (2);
+\draw[ edge ] (0) -- (3);
+\draw[ edge ] (0) -- (4);
+\draw[ edge ] (0) -- (5);
+\draw[ edge ] (0) -- (6);
+\draw[ edge ] (1) -- (7);
+\draw[ edge ] (1) -- (8);
+\draw[ edge ] (2) -- (9);
+\draw[ edge ] (2) -- (10);
+\draw[ edge ] (2) -- (11);
+\draw[ edge ] (3) -- (11);
+\draw[ edge ] (3) -- (12);
+\draw[ edge ] (4) -- (11);
+\draw[ edge ] (4) -- (13);
+\draw[ edge ] (5) -- (13);
+\draw[ edge ] (5) -- (14);
+\end{tikzpicture}
+\end{center}
+\end{document}
