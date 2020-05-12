@@ -59,6 +59,8 @@ ete_tree.render("%%inline", tree_style=ts)  # Remove "%%inline" if you are not u
 
 <img src="imgs/bbsol.png" width="700">
 
+The solution node is highlighted in green.
+
 
 ### Upper envelope
 
