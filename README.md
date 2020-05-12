@@ -13,7 +13,7 @@ This project tackles two problems which are known to be NP-hard : the Discrete U
 
 The problem is known to be NP-hard with 2-dimensional instances. The proof can be found in the [INCLUDE FILENAME] file. Since the goal is to find a subset of minimum size from a specified set of disks that cover all given points, we have chosen to use a Branch and Bound algorithm in which the cost is the number of disks which compose the current solution ```a``` and the heuristic is the number of covered points ```b```. We can represent a node of the Branch and Bound tree as a tuple ```(a, b)```. 
 
-At each step of the Branch and Bound algorithm, the set of uncovered points and unused disks are considered. One disk is selected from the set of unused disk to be reviewed. Thus, two child nodes can be created, one that contains the selected disk in its solution and one that does not. The selected disks is seen as used in the child nodes. The process is repeated for each node of the Branch and Bound Tree as long as their solution is feasible. A candidate solution is no more considered as feasible when there is a point which cannot be covered (either by the node solution or by the remaining unused disks) or a complete solution with a smaller size has been found. 
+At each step of the Branch and Bound algorithm, the set of uncovered points and unused disks are considered. One disk is selected from the set of unused disk to be reviewed. Thus, two child nodes can be created, one that contains the selected disk in its solution and one that does not. The selected disks is seen as used in the child nodes. The process is repeated for each node of the Branch and Bound tree as long as their solution is feasible. A candidate solution is no more considered as feasible when there is a point which cannot be covered (either by the node's solution or by the remaining unused disks) or a complete solution with a smaller size has been found. 
 
 Since each node can be seen as a subtree, we will only talk about trees instead of nodes. To modelize a Branch and Bound tree or subtree, we have created a ```BBTree``` object which contains :
 * the set of uncovered points, 
@@ -63,7 +63,7 @@ ete_tree.render("%%inline", tree_style=ts)  # Remove "%%inline" if you are not u
 ### Upper envelope
 
 
-### Prerequisites / Dependencies
+## Dependencies
 
 You will need to install ```Jupyter notebook``` to run the ```.ipynb``` files as well as the following dependencies : 
 
