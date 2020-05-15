@@ -21,4 +21,15 @@ So, we sort *Q* (intervals sets) and *P* (set of points), to avoid 'useless' ite
 We add an interval U to the optimal solution if and only if :
 - it is the only interval that contains a point (we are obliged to select it, otherwise we can't cover all points)<br/>
 or <br/>
-- if a point is not already covered by an interval in the optimal solution and no interval bigger than U contains the point : we choose the bigger one, since our points is sorted, that means, it is possible that the bigger interval cover other points we haven't iterated yet.
+- if a point is not already covered by an interval in the optimal solution & no interval bigger than U contains the point : we choose the bigger one, since our points is sorted, that means, it is possible that the bigger interval cover other points we haven't iterated yet.
+
+The function ```dudcONE``` only needs P and Q as parameters and return the optimal subsets of intervals.
+
+An example of the algorithm is shown below : 
+
+```
+P = [(-0.235,0),(0.93,0),(-2.8,0),(0.14,0),(1.78,0)]
+Q = [(-0.7,0.2),(-3,-2.1),(0,0.9),(1.8,2.7),(0.93,1.83),(-0.36,0.54)]
+print("Interval used = ", dudcONE(P,Q))
+```
+Interval used =  \[(-3, -2.1), (-0.36, 0.54), (0.93, 1.83)]
