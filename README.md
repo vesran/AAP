@@ -3,6 +3,7 @@ Advanced Algorithm and Programming - solutions for DUDC &amp; Upper envelope pro
 
 ### Discrete Unit Disk Cover
 
+
 #### 1D
 
 In one dimension, the problem can be reformulated as a problem of finding a minimum size of intervals subsets that covers all the points : intervals have the same size. 
@@ -33,3 +34,82 @@ Q = [(-0.7,0.2),(-3,-2.1),(0,0.9),(1.8,2.7),(0.93,1.83),(-0.36,0.54)]
 print("Interval used = ", dudcONE(P,Q))
 ```
 Interval used =  \[(-3, -2.1), (-0.36, 0.54), (0.93, 1.83)]
+
+### Upper Envelope of Some Linear Functions
+
+Given some single variable linear functions y1 = m1x + b1, y2 = m2x + b2, ···, yn = mnx + bn, an upper envelope is the function f(x) = max(y1,y2,··· ,yn). This function is a convex piece-wise linear function characterized by its breakpoints.
+
+Linear function yj = mj * x + bj can be modelized as a tuple ```(mj,bj)```
+
+Since the upper envelope can be characterized by its breakpoints, we will modelize it as a list of sublists :
+- each sublist contains two tuples
+- each sublist corresponds to a fragment of the upper envelope 
+- first tuple : coordinate of the function which above the other functions over the given interval
+- second tuple : index of x, where the function in first tuple is above
+
+
+Let's see an example : 
+```
+Y = [(-1,0),(1,0)]
+x = [-9, ..., 0, ..., 9] # where len(x) = 100
+```
+
+<img src="graph1.png" width="400"/> <img src="graph3.png" width="400"/> 
+
+As we can see:
+- y1=(-1,0) is above y2 over [x[0],x[49]] => we will add a sublist : s1 = [(-1,0),(0,49)]
+- y2=(1,0) is above y1 over [x[50],x[99]] => we will add a sublist : s2 = [(1,0),(50,99)] <br/>
+Then our upper envelope should be : ```upperE = [s1,s2] = [[(-1,0),(0,49)],[(1,0),(50,99)]```
+<br/>
+
+⚠️ the upper envelope is computing over the vector x ⚠️
+
+This problem can be solved in several ways, but we will focus on two of them : Divide and Conquer (DC) and Dynamic Programming (DP)
+
+
+Function to plot : 
+
+```plot_line(x, Y)``` : plot all the function in Y (an example is given by the left picture above).<br/>
+Y should be a list of linear functions' coordinates.
+
+
+```plot_dashed(x, uE)```: uE should be an upper envelope (an example is given by the right picture above).<br/>
+With this function, we plot the upper envelope with its breakpoints.
+
+
+#### Divide and Conquer 
+
+We divide by 2 the set of linear functions Y until remaining one linear function (```findUE_DC(x,Y)```). Once finished, we compute the upper envelopen, of two single functions, until having compute for all (```conquer(x,f,g)```).
+
+```conquer(x,f,g)``` : 
+- x is the same vector as the one in ```findUE_DC(x,Y)```
+- f and g : can be only coordinates of linear function (```(mj,bj)```) or upper envelope of linear functions (= a list of sublists containing two tuples) 
+- return the upper envelope between f and g over x
+So with ```conquer(x,f,g)``` we can compute the upper envelope between : two linear functions / one linear function with one upper envelope / two upper envelope 
+
+```create(x, f)``` : 
+- f should be an upper envelope (i.e. list of sublists)
+- return a list \[f(xi) for i in len(x)]
+
+```getFunctionOn(f, start, end)``` :
+- f can be a linear function or an upper envelope
+- start and end : index of the studied interval 
+- return a list of sublists containing f's coordinates over \[start, end]
+If f is a linear function, return ```[[(coordinate of f), (start,end)]]``` <br/>
+If f is an upper envelope, we iterate over each subfunction of f and check if it is defined over (start,end) by looking at the second tuple. If it is defined, we add [(coordinate of subfunction),(intersection of second tuple and (start,end))] to the returned solution.
+
+
+#### Dynamic Programming
+
+We create a list memo where we will stock the different upper envelope between functions. In ```findUE_DP(x,Y)```, we iterate over function Y. If it is the first function in Y, we store it since the upper envelope is itself. Otherwise, we store the upper envelope between : the current function and the upper envelope compute just before. We return memo at the end.
+
+To visualize the changement of upper envelope when we iterate over Y,  we have defined ```animation(x, Y, uE)``` :
+- x and Y should be the parameters used in ```findUE_DP(x,Y)```.
+- uE should be the list return by  ```findUE_DP(x,Y)```.
+At each iteration, we show the already iterated functions, the current function and the upper envelope.
+This function return an element of type ```animation```. If we want to visualize it, we can use : <br/>
+
+```HTML(animation(x, Y, uE).to_jshtml())```
+
+
+<img src="img4.png" width="400"/>
