@@ -50,11 +50,11 @@ print("Interval used = ", dudcONE(P,Q))
 
 #### Problem in 2 dimensions
 
-The problem is known to be NP-hard with 2-dimensional instances. The proof can be found in the [INCLUDE FILENAME] file. Since the goal is to find a subset of minimum size from a specified set of disks that cover all given points, we have chosen to use a Branch and Bound algorithm in which the bound is the number of disks which compose the current solution ```a``` and the number of covered points ```b``` is also considered. We can represent a node of the Branch and Bound tree as a tuple ```(a, b)```. 
+The problem is known to be NP-hard with 2-dimensional instances. The proof can be found in the ```report_chen_tran.pdf``` file. Since the goal is to find a subset of minimum size from a specified set of disks that cover all given points, we have chosen to use a Branch and Bound algorithm in which the bound is the number of disks which compose the current solution ```a``` and the number of covered points ```b``` is also considered. We can represent a node of the Branch and Bound tree as a tuple ```(a, b)```. 
 
 At each step of the Branch and Bound algorithm, the set of uncovered points and unused disks are considered. One disk is selected from the set of unused disk to be reviewed. Thus, two child nodes can be created, one that contains the selected disk in its solution and one that does not. The selected disks is seen as used in the child nodes. The process is repeated for each node of the Branch and Bound tree as long as their solution is feasible. A candidate solution is no more considered as feasible when there is a point which cannot be covered (either by the node's solution or by the remaining unused disks) or a complete solution with a smaller size has been found. 
 
-The chosen node to develop is the one that have the lowest ratio $\frac{solution size}{number of covered points}$. Indeed, we want the optimal solution to be found quickly and it must have a minimum solution size covering a maximal set of points.
+The chosen node to develop is the one that have the lowest ratio <img src="https://render.githubusercontent.com/render/math?math=\frac{solution size}{number of covered points}">. Indeed, we want the optimal solution to be found quickly and it must have a minimum solution size covering a maximal set of points.
 
 Since each node can be seen as a subtree, we will only talk about trees instead of nodes. To modelize a Branch and Bound tree or subtree, we have created a ```BBTree``` object which contains :
 * the set of uncovered points, 
